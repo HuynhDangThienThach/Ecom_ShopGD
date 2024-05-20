@@ -8,12 +8,13 @@ const path = require("path");
 const cors = require("cors");
 const { error } = require("console");
 const { type } = require("os");
-const stripe = require("stripe")("sk_test_51PA5zsEXMnr0TmR96Dw6UlHW9iuc6zCn6LrIch5XzdvktPUo3zlrAPF5cgmAN09cxsNBgeGdaIPsFATp803t8m8j005IeEPvqL");
+const stripe = require("stripe")(process.env.STRIPE_KEY);
 app.use(express.json());
 app.use(cors());
 
 //--- Database Connection with MongoDB
-mongoose.connect("mongodb+srv://thachlovedevv:Thach041203.@cluster0.bpsauxo.mongodb.net/e-commerce");
+mongoose.connect(process.env.MONGODB_URI);
+// mongoose.connect("mongodb+srv://thachlovedevv:Thach041203.@cluster0.bpsauxo.mongodb.net/e-commerce");
 
 //---API Creation
 app.get("/",(req,res)=>{
@@ -37,7 +38,7 @@ app.use('/images',express.static('upload/images'))
 app.post("/upload",upload.single('product'),(req, res) =>{
     res.json({
         success: 1,
-        image_url: `https://ecom-shopgd.onrender.com/images/${req.file.filename}`
+        image_url: `${process.env.DOMAIN}/images/${req.file.filename}`
         // image_url: `http://${process.env.DOMAIN}:${port}/images/${req.file.filename}`
     })
 })
