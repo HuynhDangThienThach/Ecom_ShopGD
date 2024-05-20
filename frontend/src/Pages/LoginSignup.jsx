@@ -17,7 +17,7 @@ const LoginSignup = () => {
   const login = async () =>{
     console.log("dn tc", formData);
     let responseData;
-    await fetch("http://localhost:4000/login", {
+    await fetch("https://ecom-shopgd.onrender.com/login", {
       method: "POST",
       headers: {
         Accept: "application/form-data",
@@ -37,7 +37,7 @@ const LoginSignup = () => {
   const signup = async () => {
     console.log("cp dk", formData);
     let responseData;
-    await fetch('http://localhost:4000/signup',{
+    await fetch('https://ecom-shopgd.onrender.com/signup',{
       method:'POST',
       headers: {
         Accept: 'application/form-data',
